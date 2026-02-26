@@ -1,0 +1,20 @@
+{
+  "frontend/src/index.css": "Global styles with dark trading terminal theme using OKLCH color system, JetBrains Mono + Inter fonts, custom status color utilities (success/warning/danger/info), and scrollbar styling.",
+  "frontend/tailwind.config.js": "Extended Tailwind config with JetBrains Mono/Inter font families, success/warning/danger/info semantic color tokens, and glow box shadow for the dark trading terminal aesthetic.",
+  "frontend/src/hooks/useQueries.ts": "All React Query hooks for backend integration — includes new `useWebhookAlerts` hook that fetches all webhook alerts from the backend with 10-second auto-polling and newest-first sorting, plus all existing trace/settings/ghost/webhook hooks with cache invalidation.",
+  "frontend/src/lib/utils.ts": "Utility functions for class merging, timestamp formatting (nanosecond bigint to Date), price/PnL/duration formatting, and status label/color mapping for GhostStatus, TradeStatus, EventSource, and EventType enums.",
+  "frontend/src/hooks/useGhostForwarding.ts": "Custom hook that handles Ghost webhook forwarding via browser fetch, calling updateGhostStatus with accepted/rejected based on HTTP response, respecting pipeline test mode.",
+  "frontend/src/components/StatusBadge.tsx": "Color-coded badge components for GhostStatus, TradeStatus, trade Action, and new WebhookStatusBadge — maps received→blue, processed→green, error→red with error message as tooltip/inline text.",
+  "frontend/src/components/TraceFilters.tsx": "Filter bar component with ticker dropdown, ghost/tradovate status selectors, strategy text search, and date range inputs with a clear-all button.",
+  "frontend/src/components/TracesTable.tsx": "Data-dense table component rendering all trace columns with clickable rows navigating to detail page, P&L trend icons, and empty/loading states.",
+  "frontend/src/components/TraceSummaryCard.tsx": "Summary card for trace detail page showing all trace metadata fields with formatted values and pretty-printed params_snapshot JSON.",
+  "frontend/src/components/TraceTimeline.tsx": "Chronological event timeline with expandable raw JSON per event, color-coded by source (TradingView/Ghost/Tradovate) with dot-and-line visual structure.",
+  "frontend/src/components/RoundTurnSummary.tsx": "Round turn metrics card showing avg entry/exit, P&L, duration, and separate entry/exit fills tables with side-colored rows.",
+  "frontend/src/components/SamplePayloadCard.tsx": "Displays a pre-filled sample TradingView alert JSON payload with a copy-to-clipboard button and webhook endpoint reference.",
+  "frontend/src/components/Layout.tsx": "App shell with sticky top navigation bar — now includes an \"Alert Log\" nav link (with Bell icon) between Dashboard and Settings, plus logo, live indicator, and attribution footer.",
+  "frontend/src/pages/Dashboard.tsx": "Main dashboard page with client-side filter application, traces table, refresh button, and trace count display.",
+  "frontend/src/pages/TraceDetail.tsx": "Trace detail page using route params to load trace/events/fills data, with three-column layout (summary | timeline + round turn) and Tradovate refresh button.",
+  "frontend/src/pages/Settings.tsx": "Settings page with a new prominent \"Your TradingView Webhook URL\" card at the top (derived from `window.location.origin`, read-only input, one-click copy with Sonner toast confirmation), followed by the existing pipeline mode, Ghost, Tradovate, and sample payload sections.",
+  "frontend/src/App.tsx": "Root app component with TanStack Router setup — now registers four routes (/, /trace/$traceId, /settings, /alerts) all wrapped by the Layout component, plus Sonner toaster.",
+  "frontend/src/pages/AlertLog.tsx": "New Alert Log page that displays all received TradingView webhook alerts in an expandable table with columns for Received At, Ticker, Action, Strategy, Alert Name, Alert ID, and Status; each row expands to show the raw JSON payload, with loading skeleton, empty state, and a manual refresh button."
+}

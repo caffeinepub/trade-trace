@@ -1,0 +1,82 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-usewebhookalerts-react-query-hook-in-frontend-src-hooks-usequeries-ts-that-calls-the-backend-getwebhookalerts-query-and-returns-the-list-of-webhookalert-records-polling-interval-should-be-10-seconds-so-new-alerts-appear-automatically",
+      "featureTitle": "Add a `useWebhookAlerts` React Query hook in `frontend/src/hooks/useQueries.ts` that calls the backend `getWebhookAlerts` query and returns the list of `WebhookAlert` records. Polling interval should be 10 seconds so new alerts appear automatically.",
+      "files": [
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-new-page-frontend-src-pages-alertlog-tsx-at-route-alerts-that-displays-all-received-tradingview-webhook-alerts-the-page-must-show-a-sortable-table-with-columns-for-received-at-human-readable-timestamp-ticker-action-strategy-alert-name-alert-id-and-status-badge-each-row-must-be-expandable-to-reveal-the-full-raw-json-payload-include-a-refresh-button-and-a-total-count-show-an-empty-state-message-when-no-alerts-have-been-received-match-the-existing-dark-theme-and-design-conventions-used-in-dashboard-tsx-and-tracedetail-tsx",
+      "featureTitle": "Create a new page `frontend/src/pages/AlertLog.tsx` at route `/alerts` that displays all received TradingView webhook alerts. The page must show: a sortable table with columns for Received At (human-readable timestamp), Ticker, Action, Strategy, Alert Name, Alert ID, and Status badge. Each row must be expandable to reveal the full raw JSON payload. Include a Refresh button and a total count. Show an empty state message when no alerts have been received. Match the existing dark theme and design conventions used in Dashboard.tsx and TraceDetail.tsx.",
+      "files": [
+        "frontend/src/components/StatusBadge.tsx",
+        "frontend/src/pages/AlertLog.tsx"
+      ],
+      "components": [
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-alert-log-navigation-link-to-the-top-nav-bar-in-frontend-src-components-layout-tsx-alongside-the-existing-dashboard-and-settings-links-pointing-to-alerts-apply-the-same-active-state-highlight-style-used-by-the-other-nav-links",
+      "featureTitle": "Add an 'Alert Log' navigation link to the top nav bar in `frontend/src/components/Layout.tsx` alongside the existing Dashboard and Settings links, pointing to `/alerts`. Apply the same active-state highlight style used by the other nav links.",
+      "files": [
+        "frontend/src/components/Layout.tsx"
+      ],
+      "components": [
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-register-the-alerts-route-in-frontend-src-app-tsx-using-the-existing-tanstack-router-setup-pointing-to-the-new-alertlog-page-component",
+      "featureTitle": "Register the `/alerts` route in `frontend/src/App.tsx` using the existing TanStack Router setup, pointing to the new `AlertLog` page component.",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

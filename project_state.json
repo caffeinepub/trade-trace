@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "TradingView webhook integration app (trade-trace-mju) deployed live. User wants a webhook alert log page added to display all received TradingView alerts with timestamp, payload, and status.",
+  "architectural_notes": [
+    "App is live at https://trade-trace-mju.caffeine.xyz with TradingView webhook endpoint at /webhooks/tradingview",
+    "TradingView alert payload schema: ticker, action, entry, stop_loss, take_profit, strategy, timeframe, alert_id, alert_name"
+  ],
+  "known_issues": [
+    "TradingView fired 2 alerts to the webhook but no data/movement visible in the app — possible webhook processing or storage issue"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-add-a-usewebhookalerts-react-query-hook-in-frontend-src-hooks-usequeries-ts-that-calls-the-backend-getwebhookalerts-query-and-returns-the-list-of-webhookalert-records-polling-interval-should-be-10-seconds-so-new-alerts-appear-automatically",
+      "title": "Add a `useWebhookAlerts` React Query hook in `frontend/src/hooks/useQueries.ts` that calls the backend `getWebhookAlerts` query and returns the list of `WebhookAlert` records. Polling interval should be 10 seconds so new alerts appear automatically.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-page-frontend-src-pages-alertlog-tsx-at-route-alerts-that-displays-all-received-tradingview-webhook-alerts-the-page-must-show-a-sortable-table-with-columns-for-received-at-human-readable-timestamp-ticker-action-strategy-alert-name-alert-id-and-status-badge-each-row-must-be-expandable-to-reveal-the-full-raw-json-payload-include-a-refresh-button-and-a-total-count-show-an-empty-state-message-when-no-alerts-have-been-received-match-the-existing-dark-theme-and-design-conventions-used-in-dashboard-tsx-and-tracedetail-tsx",
+      "title": "Create a new page `frontend/src/pages/AlertLog.tsx` at route `/alerts` that displays all received TradingView webhook alerts. The page must show: a sortable table with columns for Received At (human-readable timestamp), Ticker, Action, Strategy, Alert Name, Alert ID, and Status badge. Each row must be expandable to reveal the full raw JSON payload. Include a Refresh button and a total count. Show an empty state message when no alerts have been received. Match the existing dark theme and design conventions used in Dashboard.tsx and TraceDetail.tsx.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-alert-log-navigation-link-to-the-top-nav-bar-in-frontend-src-components-layout-tsx-alongside-the-existing-dashboard-and-settings-links-pointing-to-alerts-apply-the-same-active-state-highlight-style-used-by-the-other-nav-links",
+      "title": "Add an 'Alert Log' navigation link to the top nav bar in `frontend/src/components/Layout.tsx` alongside the existing Dashboard and Settings links, pointing to `/alerts`. Apply the same active-state highlight style used by the other nav links.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-register-the-alerts-route-in-frontend-src-app-tsx-using-the-existing-tanstack-router-setup-pointing-to-the-new-alertlog-page-component",
+      "title": "Register the `/alerts` route in `frontend/src/App.tsx` using the existing TanStack Router setup, pointing to the new `AlertLog` page component.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add a webhook alert log page showing all received TradingView alerts with timestamp, full payload, and status",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add a stable `WebhookAlert` record type to the backend and an append-only log (stable array or map) that persists all incoming TradingView webhook payloads. Each record must capture: a unique alert ID, receipt timestamp (nanoseconds), raw JSON payload as Text, ticker, action, strategy, alert_name, alert_id fields parsed from the payload, and a processing status (e.g., #received, #processed, #error).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "TradeTrace",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

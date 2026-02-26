@@ -1,0 +1,91 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-26T20:09:00.651Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Add a stable `WebhookAlert` record type to the backend and an append-only log (stable array or map) that persists all incoming TradingView webhook payloads. Each record must capture: a unique alert ID, receipt timestamp (nanoseconds), raw JSON payload as Text, ticker, action, strategy, alert_name, alert_id fields parsed from the payload, and a processing status (e.g., #received, #processed, #error).",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Add a `useWebhookAlerts` React Query hook in `frontend/src/hooks/useQueries.ts` that calls the backend `getWebhookAlerts` query and returns the list of `WebhookAlert` records. Polling interval should be 10 seconds so new alerts appear automatically.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useQueries.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Create a new page `frontend/src/pages/AlertLog.tsx` at route `/alerts` that displays all received TradingView webhook alerts. The page must show: a sortable table with columns for Received At (human-readable timestamp), Ticker, Action, Strategy, Alert Name, Alert ID, and Status badge. Each row must be expandable to reveal the full raw JSON payload. Include a Refresh button and a total count. Show an empty state message when no alerts have been received. Match the existing dark theme and design conventions used in Dashboard.tsx and TraceDetail.tsx.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/AlertLog.tsx",
+          "frontend/src/components/StatusBadge.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/AlertLog.tsx",
+          "frontend/src/components/StatusBadge.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Add an 'Alert Log' navigation link to the top nav bar in `frontend/src/components/Layout.tsx` alongside the existing Dashboard and Settings links, pointing to `/alerts`. Apply the same active-state highlight style used by the other nav links.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Layout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Layout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Register the `/alerts` route in `frontend/src/App.tsx` using the existing TanStack Router setup, pointing to the new `AlertLog` page component.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/Layout.tsx",
+    "frontend/src/components/StatusBadge.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/AlertLog.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add TradingView Alert Log Page with Backend Storage",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Add a React Query hook to fetch webhook alerts from the backend with 10-second auto-polling",
+      "acceptanceCriteria": [
+        "Hook is exported from useQueries.ts.",
+        "Hook polls the backend every 10 seconds.",
+        "Hook returns typed WebhookAlert array matching the backend type."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a useWebhookAlerts hook that calls actor.getWebhookAlerts() and returns the list of WebhookAlert records. Configure refetchInterval to 10000ms for automatic polling. Follow the existing pattern used by useTraces and other query hooks in this file."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Create a new Alert Log page displaying all received TradingView webhook alerts in a sortable, expandable table",
+      "acceptanceCriteria": [
+        "Route /alerts renders the AlertLog page.",
+        "Table displays all fields: Received At, Ticker, Action, Strategy, Alert Name, Alert ID, Status.",
+        "Status is rendered using a styled badge (received/processed/error).",
+        "Clicking a row expands it to show the full raw JSON payload with syntax highlighting.",
+        "Refresh button triggers a manual re-fetch.",
+        "Empty state is shown when no alerts are stored.",
+        "Page auto-polls every 10 seconds."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AlertLog.tsx",
+          "operation": "create",
+          "description": "Create a new page component that uses the useWebhookAlerts hook to fetch and display webhook alerts. Render a Card containing: a header with 'Alert Log' title, total count, and Refresh button; a sortable table with columns for Received At (formatted using formatTimestamp from utils.ts), Ticker, Action, Strategy, Alert Name, Alert ID, and Status (using a badge component similar to StatusBadge.tsx). Make each row expandable (using shadcn/ui Collapsible) to reveal the raw_payload field as formatted JSON. Include a loading skeleton (similar to TracesTable.tsx) and an empty state message when no alerts exist. Match the dark OKLCH theme and design conventions used in Dashboard.tsx and TraceDetail.tsx."
+        },
+        {
+          "path": "frontend/src/components/StatusBadge.tsx",
+          "operation": "modify",
+          "description": "Add a new WebhookStatusBadge component that accepts a WebhookStatus prop and renders a styled badge. Map status.received to a blue badge, status.processed to a green badge, and status.error to a red badge with the error message as tooltip. Follow the existing pattern used by GhostStatusBadge and TradeStatusBadge in this file."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add an 'Alert Log' navigation link to the top nav bar",
+      "acceptanceCriteria": [
+        "Nav bar shows an 'Alert Log' link between Dashboard and Settings.",
+        "Link navigates to /alerts.",
+        "Active state is highlighted when the user is on /alerts."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Add a new 'Alert Log' navigation Link between the existing Dashboard and Settings links in the nav bar. Use the same Link component and active-state highlighting logic (location.pathname comparison) that is currently applied to the Dashboard and Settings links. Point the link to '/alerts'."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Register the /alerts route in the app router",
+      "acceptanceCriteria": [
+        "Navigating to /alerts renders the AlertLog page without a 404.",
+        "Existing routes (/, /trace/$traceId, /settings) are unaffected."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import the AlertLog component from pages/AlertLog.tsx. Add a new Route in the TanStack Router setup with path='/alerts' and element={<AlertLog />}. Place it alongside the existing routes for Dashboard, TraceDetail, and Settings. Ensure the route is wrapped by the Layout component like the other routes."
+        }
+      ]
+    }
+  ]
+}
